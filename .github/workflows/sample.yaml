@@ -1,0 +1,36 @@
+# name of the workflow.
+# this is optional.
+name: Continuous Integration
+
+# events that will trigger this workflow.
+# here, we only have "pull_request", so the workflow will run
+# whenever we create a pull request.
+# other examples: [push] and [pull_request, push]
+on: [pull_request]
+
+# each workflow must have at least one job.
+# jobs run in parallel by default (we can change that).
+# each job groups together a series of steps to accomplish a purpose.
+jobs:
+  # name of the job
+  first:
+    # the platform or OS that the workflow will run on.
+    runs-on: ubuntu-latest
+
+    # series of steps to finish the job.
+    steps:
+      # name of the step.
+      # steps run sequentially.
+      # this is optionale
+      - name: checkout
+        # each step can either have "uses" or "run".
+        # "uses" run an action written somewhere other than this workflow .
+        # usually from the community.
+        # this action checks out the repo code to the runner (instance)
+        # running the action
+        uses: actions/checkout@v3
+
+      # another step.
+      # this step runs a bash (Ubuntu's default shell) command
+      - name: list files
+        run: ls
